@@ -4,5 +4,5 @@ services:
       context: .
     image: chinski-listonosz:local
     ports:
-      - "${LISTONOSZ_PORT:-8080}:80"
+      - '${LISTONOSZ_PORT:-8086}:80'
     restart: unless-stopped
