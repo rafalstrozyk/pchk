@@ -2,11 +2,11 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { examples } from './examples.js'
 import { MAX_VERTICES, solvePostman } from './solver.js'
+import { Theory } from './study.jsx'
 import './styles.css'
 
 const vertex = index => String.fromCharCode(65 + index)
 const indexes = count => Array.from({ length: count }, (_, index) => index)
-const paper = 'https://research.ibm.com/publications/matching-euler-tours-and-the-chinese-postman'
 
 function hasEdge(graph, from, to) {
   return graph.edges.some(edge => (
@@ -364,36 +364,6 @@ function Tutorial() {
   )
 }
 
-function Theory() {
-  return (
-    <section id="algorytm" className="theory">
-      <header><p className="eyebrow">Teoria grafów</p><h2>Jak działa algorytm?</h2></header>
-      <p className="theory-intro">Każdą ulicę trzeba przejść przynajmniej raz i wrócić do miejsca startu. Suma wag ulic jest dolną granicą kosztu. Żeby ją osiągnąć, graf musi mieć cykl Eulera. W pozostałych przypadkach szukamy najtańszego zestawu powtórzeń.</p>
-      <div className="theory-grid">
-        <article>
-          <h3>Graf nieskierowany</h3>
-          <p>W cyklu Eulera każde wejście do wierzchołka ma odpowiadające mu wyjście, więc wszystkie stopnie muszą być parzyste. W spójnym grafie łączymy w pary wierzchołki o nieparzystym stopniu. Kosztem pary jest długość najkrótszej ścieżki między nimi.</p>
-          <p>Program wyznacza odległości algorytmem Floyda–Warshalla i szuka skojarzenia doskonałego o minimalnym koszcie za pomocą programowania dynamicznego po podzbiorach. Powielenie ścieżki zmienia parzystość tylko na jej końcach.</p>
-        </article>
-        <article>
-          <h3>Graf skierowany</h3>
-          <p>Graf musi być silnie spójny. Każdy wierzchołek powinien mieć tyle samo łuków wchodzących i wychodzących. Dodatkowe przejścia zaczynają się tam, gdzie brakuje wyjść, i kończą się tam, gdzie brakuje wejść.</p>
-          <p>Najkrótsze ścieżki zgodne z kierunkiem łuków wyznaczają koszty transportu. Przepływ o minimalnym koszcie przydziela wszystkie brakujące przejścia. Ścieżki powielamy tyle razy, ile jednostek przepływu do nich przypisano.</p>
-        </article>
-        <article>
-          <h3>Skąd wiadomo, że trasa jest optymalna?</h3>
-          <p>W każdej zamkniętej trasie dodatkowe przejścia muszą usunąć te same nieparzystości lub braki w bilansie. Przejścia da się rozłożyć na ścieżki między odpowiednimi wierzchołkami oraz cykle. Przy dodatnich wagach cykle zwiększają koszt, a każdą ścieżkę można zastąpić najkrótszą. Skojarzenie lub przepływ daje więc najniższy możliwy koszt powtórzeń.</p>
-        </article>
-        <article>
-          <h3>Jak powstaje końcowa trasa?</h3>
-          <p>Po powieleniu wybranych połączeń stosujemy algorytm Hierholzera. Łączy on zamknięte fragmenty przejścia w jeden cykl, który wykorzystuje każdą kopię połączenia dokładnie raz. Punkt startowy zmienia kolejność odwiedzin, a optymalny koszt pozostaje taki sam.</p>
-        </article>
-      </div>
-      <p className="source"><a href={paper} target="_blank" rel="noreferrer">J. Edmonds i E. L. Johnson, „Matching, Euler tours and the Chinese postman” (1973)</a></p>
-    </section>
-  )
-}
-
 function App() {
   const [graph, setGraph] = useState(examples[0])
   const [selected, setSelected] = useState(0)
@@ -453,6 +423,7 @@ function App() {
           <p className="eyebrow">Interaktywna teoria grafów</p>
           <h1>Problem chińskiego<br />listonosza<span>.</span></h1>
           <p>Jak przejść każdą ulicę co najmniej raz, wrócić do punktu startu i zapłacić jak najmniej? Sprawdź na gotowym przykładzie lub zbuduj własny graf.</p>
+          <a className="hero-study-link" href="#algorytm">Dokumentacja i prezentacja ↓</a>
         </section>
         <section id="demo" className="demo" aria-labelledby="demo-title">
           <div className="demo-header">

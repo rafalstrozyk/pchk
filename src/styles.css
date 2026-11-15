@@ -190,3 +190,58 @@ footer { border-top: 1px solid var(--line); padding-block: 1.25rem; }
   text-decoration: none;
 }
 .tutorial-link:hover { background: #0a412e; }
+
+.hero > p:not(.eyebrow) {
+  max-width: 44rem;
+  color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  margin-bottom: .7rem;
+}
+.hero-study-link { color: var(--green); font-weight: 650; }
+.study-header, .slide-bar, .slide-controls {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  flex-wrap: wrap;
+}
+.study-header, .slide-bar { justify-content: space-between; }
+.study-header { margin-bottom: .7rem; }
+.study-header h2 { margin: 0; }
+.study-table { overflow-x: auto; margin-block: .8rem; }
+.study-table table { border-collapse: collapse; text-align: left; width: 100%; }
+.study-table caption { text-align: left; font-weight: 650; margin-bottom: .35rem; }
+.study-table th, .study-table td { padding: .32em .55em; border-bottom: 1px solid var(--line); }
+.study-table thead { background: #edf0e7; }
+
+.slide-dialog {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  color: var(--ink);
+  background: var(--paper);
+  overscroll-behavior: contain;
+}
+.slide-dialog::backdrop { background: #1d2722; }
+.slide-frame {
+  display: flex;
+  flex-direction: column;
+  width: min(69rem, calc(100% - 2rem));
+  min-height: 100%;
+  margin: auto;
+  padding-block: clamp(1rem, 4vh, 2.5rem);
+}
+.slide-content {
+  flex: 1;
+  padding-block: clamp(1.25rem, 5vh, 3rem);
+  font-size: clamp(1rem, 2.1vw, 1.45rem);
+  line-height: 1.5;
+}
+.slide-content h2 { font-size: clamp(2rem, 5.5vw, 4rem); line-height: 1.05; }
+.slide-content p { max-width: 58rem; margin-bottom: .7em; }
+.slide-content li + li { margin-top: .45em; }
+.slide-controls { margin-top: .6rem; }
+.slide-controls a { color: var(--green); }
